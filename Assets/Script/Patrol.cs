@@ -43,29 +43,29 @@ public class Patrol : NPCbaseFSM
 
         var direction = waypoints[currentWP].transform.position - NPC.transform.position;
 
-        NPC.transform.rotation = Quaternion.Slerp(NPC.transform.rotation, Quaternion.LookRotation(direction), 
-        1.0f * Time.deltaTime);
-        NPC.transform.Translate( Time.deltaTime * speed, 0,0);
+        //NPC.transform.rotation = Quaternion.Slerp(NPC.transform.rotation, Quaternion.LookRotation(direction), 
+        //1.0f * Time.deltaTime);
+        //NPC.transform.Translate( Time.deltaTime * speed, 0,0);
 
         //NPC go and back agian and agian
-        //if (face == 1)
-        //{
-        //    NPC.transform.Translate(Time.deltaTime * speed, 0, 0);
+        if (face == 1)
+        {
+            NPC.transform.Translate(Time.deltaTime * speed, 0, 0);
 
-        //}
-        //if (face == 0)
-        //{
-        //    NPC.transform.Translate(-Time.deltaTime * speed, 0, 0);
-        //}
+        }
+        if (face == 0)
+        {
+            NPC.transform.Translate(-Time.deltaTime * speed, 0, 0);
+        }
 
-        //if (NPC.transform.position.x > currentposition.x + distnation)
-        //{
-        //    face = 0;
-        //}
-        //if (NPC.transform.position.x < currentposition.x)
-        //{
-        //    face = 1;
-        //}
+        if (NPC.transform.position.x > currentposition.x + distnation)
+        {
+            face = 0;
+        }
+        if (NPC.transform.position.x < currentposition.x)
+        {
+            face = 1;
+        }
 
         //NPC.transform.Translate(Time.deltaTime * 2.0f, 0, 0);
 
