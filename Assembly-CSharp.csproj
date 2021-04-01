@@ -63,7 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\bullet.cs" />
+    <Compile Include="Assets\Script\Chase.cs" />
+    <Compile Include="Assets\Script\FollowBehavior.cs" />
+    <Compile Include="Assets\Script\MonsterAI.cs" />
     <Compile Include="Assets\Script\Movement.cs" />
+    <Compile Include="Assets\Script\NPCbaseFSM.cs" />
     <Compile Include="Assets\Script\Patrol.cs" />
     <Compile Include="Assets\Script\Shooting.cs" />
     <Reference Include="Unity.Timeline.Editor">

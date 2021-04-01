@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patrol : StateMachineBehaviour
+public class Patrol : NPCbaseFSM
 {
 
 
 
-    GameObject NPC;
+    //GameObject NPC;
     GameObject[] waypoints;
     int currentWP;
+    private int face = 1;
+    public float distnation = 3.0f;
+    private Vector2 currentposition;
 
     void Awake() {
         waypoints = GameObject.FindGameObjectsWithTag("waypoint");
@@ -20,7 +23,8 @@ public class Patrol : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        NPC = animator.gameObject;
+        //NPC = animator.gameObject;
+        base.OnStateEnter(animator, stateInfo, layerIndex);
         currentWP = 0;
     }
 
@@ -28,7 +32,7 @@ public class Patrol : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (waypoints.Length == 0) return;
-        if (Vector3.Distance(waypoints[currentWP].transform.position, NPC.transform.position) < 3.0f)
+        if (Vector2.Distance(waypoints[currentWP].transform.position, NPC.transform.position) < accuracy)
             {
             currentWP++;
             if (currentWP >= waypoints.Length) {
@@ -38,8 +42,40 @@ public class Patrol : StateMachineBehaviour
 
 
         var direction = waypoints[currentWP].transform.position - NPC.transform.position;
-        NPC.transform.rotation = Quaternion.Slerp(NPC.transform.rotation, Quaternion.LookRotation(direction), 1.0f * Time.deltaTime);
-        NPC.transform.Translate(0, 0, Time.deltaTime * 2.0f);
+
+        NPC.transform.rotation = Quaternion.Slerp(NPC.transform.rotation, Quaternion.LookRotation(direction), 
+        1.0f * Time.deltaTime);
+        NPC.transform.Translate( Time.deltaTime * speed, 0,0);
+
+        //NPC go and back agian and agian
+        //if (face == 1)
+        //{
+        //    NPC.transform.Translate(Time.deltaTime * speed, 0, 0);
+
+        //}
+        //if (face == 0)
+        //{
+        //    NPC.transform.Translate(-Time.deltaTime * speed, 0, 0);
+        //}
+
+        //if (NPC.transform.position.x > currentposition.x + distnation)
+        //{
+        //    face = 0;
+        //}
+        //if (NPC.transform.position.x < currentposition.x)
+        //{
+        //    face = 1;
+        //}
+
+        //NPC.transform.Translate(Time.deltaTime * 2.0f, 0, 0);
+
+
+
+
+
+
+
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
