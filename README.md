@@ -1,4 +1,5 @@
 # Game
-Game &amp; Ai project. Group01
+Game &amp; Ai project
+
 
 
